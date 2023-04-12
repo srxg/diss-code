@@ -19,10 +19,6 @@ distance ((x1, y1), (x2, y2)) = if (x1,y1) == (x2,y2) then (0::CReal) else pytha
 cartesianProd :: Shape -> Shape -> [(Point,Point)]
 cartesianProd s1 s2 = [(p,q) | p <- s1, q <- s2]
 
-
-getMaximumValue :: [CReal] -> CReal
-getMaximumValue x:xs = 
-
 diameter :: Shape -> CReal
 diameter s = if length s == 0 then (0::CReal) else MT.max [distance i | i <- cartesianProd s s]
 
