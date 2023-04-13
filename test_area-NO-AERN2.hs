@@ -1,3 +1,4 @@
+--import GHC.Types (Multiplicity(One))
 -- This does not use AERN2.
 
 type Point = (Double, Double)
@@ -46,6 +47,20 @@ isNotConvex s
     -- basically just rotating the original list to the left by one element
     -- this makes sure we get a list of consectuive edges 
     pointTriples = zip3 s (drop 1 $ cycle s) (drop 2 $ cycle s)
+
+
+-- https://math.andrej.com/2007/09/28/seemingly-impossible-functional-programs/
+data Bit = Zero | One deriving (Eq)
+-- here, the cantor space is defined as an infinte set of funcs from N -> Bit
+type Cantor = Integer -> Bit
+
+left :: Cantor -> Cantor
+left func 0 = Zero
+left func n = func (n - 1)
+
+right :: Cantor -> Cantor
+right func 0 = One
+right func n = func (n - 1)
 
 a,b,c :: Point
 a = (1,2)
