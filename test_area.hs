@@ -9,6 +9,7 @@ type Shape = [Point]
 
 
 pythag :: Point -> Point -> CReal
+-- doesn't seem to work without the ifs 0 checking ?
 pythag (x1,y1) (x2,y2) = sqrt ((if abs((x2-x1)) == 0 then 0 else abs((x2-x1))**(2::CReal)) + (if abs((y2-y1)) == 0 then 0 else abs((y2-y1))**(2::CReal)))
 
 distance :: (Point, Point) -> CReal
@@ -20,6 +21,7 @@ cartesianProd :: Shape -> Shape -> [(Point,Point)]
 cartesianProd s1 s2 = [(p,q) | p <- s1, q <- s2]
 
 diameter :: Shape -> CReal
+-- this won't work
 diameter s = if length s == 0 then (0::CReal) else MT.max [distance i | i <- cartesianProd s s]
 
 a,b,c :: Point
